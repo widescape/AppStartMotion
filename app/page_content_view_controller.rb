@@ -1,12 +1,20 @@
 class PageContentViewController < UIViewController
-  attr_accessor :pageIndex, :pageTitle
+  attr_accessor :pageLabel, :pageIndex, :pageTitle
 
   def loadView
-    self.view = PageView.alloc.initWithFrame(UIScreen.mainScreen.bounds)
+    super
+    self.view = UIView.alloc.initWithFrame(UIScreen.mainScreen.bounds)
+
+    @pageLabel = UILabel.alloc.initWithFrame([[0, 100], [self.view.frame.size.width, 40]])
+    @pageLabel.font = UIFont.systemFontOfSize(30)
+    @pageLabel.textAlignment = UITextAlignmentCenter
+    @pageLabel.textColor = UIColor.blackColor
+    @pageLabel.backgroundColor = UIColor.clearColor
+    self.view.addSubview(@pageLabel)
   end
 
   def viewDidLoad
     super
-    view.pageLabel.text = pageTitle
+    @pageLabel.text = pageTitle
   end
 end
